@@ -1,0 +1,35 @@
+package org.example;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class Main {
+    public static void main(String[] args) {
+        String[] fieldChanges = null;
+        System.out.println(isCommonField(fieldChanges));
+    }
+
+    private static final List<String> commonFields = new ArrayList<>();
+    static {
+        commonFields.add("wk_id");
+        commonFields.add("wk_updated_by");
+        commonFields.add("wk_created_by");
+        commonFields.add("wk_updated_at");
+        commonFields.add("wk_created_at");
+        commonFields.add("wk_deleted_at");
+        commonFields.add("tenure");
+        commonFields.add("age");
+        commonFields.add("working_years");
+    }
+
+    private static boolean isCommonField(String[] fieldChanges) {
+        List<String> fieldChangeList = Arrays.stream(fieldChanges).collect(Collectors.toList());
+        if (fieldChanges.length == 0) {
+            return true;
+        }
+        fieldChangeList.removeAll(commonFields);
+        return fieldChangeList.size() == 0;
+    }
+}
