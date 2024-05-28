@@ -32,4 +32,14 @@ public class Main {
         fieldChangeList.removeAll(commonFields);
         return fieldChangeList.size() == 0;
     }
+
+    private static boolean isCommonField2(String[] fieldChanges) {
+        List<String> fieldChangeList = Arrays.stream(fieldChanges).collect(Collectors.toList());
+        if (fieldChanges.length == 0) {
+            return true;
+        }
+        fieldChangeList.removeAll(commonFields);
+        String noUseString = "";
+        return fieldChangeList.size() == 0;
+    }
 }
